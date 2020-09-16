@@ -20,6 +20,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
 import java.awt.SystemColor;
+import java.awt.Color;
 
 public class Pat_Info_Edit extends JFrame
 {
@@ -60,7 +61,7 @@ public class Pat_Info_Edit extends JFrame
 		setTitle("Patient Information");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Pat_Info_Edit.class.getResource("/Icon/paper_plane.png")));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 504, 342);
+		setBounds(100, 100, 537, 342);
 		contentPane = new JPanel();
 		contentPane.setBackground(SystemColor.inactiveCaptionBorder);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -82,7 +83,7 @@ public class Pat_Info_Edit extends JFrame
 		panel_4.add(lblAddress);
 		
 		textField_address = new JTextField();
-		textField_address.setFont(new Font("新細明體", Font.PLAIN, 20));
+		textField_address.setFont(new Font("微軟正黑體", Font.PLAIN, 20));
 		textField_address.setColumns(20);
 		panel_4.add(textField_address);
 		
@@ -95,7 +96,7 @@ public class Pat_Info_Edit extends JFrame
 		panel_5.add(lblPhoneNumber);
 		
 		textField_number = new JTextField();
-		textField_number.setFont(new Font("新細明體", Font.PLAIN, 20));
+		textField_number.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 20));
 		textField_number.setColumns(10);
 		panel_5.add(textField_number);
 		
@@ -108,7 +109,7 @@ public class Pat_Info_Edit extends JFrame
 		panel_6.add(lblHeight);
 		
 		textField_height = new JTextField();
-		textField_height.setFont(new Font("新細明體", Font.PLAIN, 20));
+		textField_height.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 20));
 		textField_height.setColumns(10);
 		panel_6.add(textField_height);
 		
@@ -121,7 +122,7 @@ public class Pat_Info_Edit extends JFrame
 		panel_7.add(lblWeight);
 		
 		textField_weight = new JTextField();
-		textField_weight.setFont(new Font("新細明體", Font.PLAIN, 20));
+		textField_weight.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 20));
 		textField_weight.setColumns(10);
 		panel_7.add(textField_weight);
 		
@@ -135,7 +136,7 @@ public class Pat_Info_Edit extends JFrame
 		panel_2.add(lblNote);
 		
 		textField_note = new JTextField();
-		textField_note.setFont(new Font("新細明體", Font.PLAIN, 20));
+		textField_note.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 20));
 		textField_note.setColumns(20);
 		panel_2.add(textField_note);
 		
@@ -144,6 +145,7 @@ public class Pat_Info_Edit extends JFrame
 		contentPane.add(panel_1, BorderLayout.SOUTH);
 		
 		JButton btnNewButton = new JButton("SAVE");
+		btnNewButton.setBackground(Color.LIGHT_GRAY);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) 
 			{

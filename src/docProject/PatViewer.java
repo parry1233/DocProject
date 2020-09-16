@@ -68,7 +68,7 @@ public class PatViewer extends JFrame
 		XML_Reader reader = new XML_Reader();
 		setTitle("Patient View");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 731, 549);
+		setBounds(100, 100, 731, 510);
 		contentPane = new JPanel();
 		contentPane.setBackground(SystemColor.text);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -76,7 +76,9 @@ public class PatViewer extends JFrame
 		contentPane.setLayout(null);
 		
 		JLabel icon = new JLabel("");
-		icon.setBounds(413, 10, 294, 276);
+		icon.setHorizontalAlignment(SwingConstants.CENTER);
+		icon.setIcon(new ImageIcon(PatViewer.class.getResource("/Icon/tumblr_pf83uw6Z5m1xzv69ro4_400.png")));
+		icon.setBounds(413, 10, 294, 294);
 		contentPane.add(icon);
 		
 		JLabel lblSsn = new JLabel("SSN:");
@@ -92,25 +94,25 @@ public class PatViewer extends JFrame
 		lblName = new JLabel("Firstname");
 		lblName.setForeground(new Color(0, 0, 128));
 		lblName.setHorizontalAlignment(SwingConstants.CENTER);
-		lblName.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 28));
+		lblName.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 42));
 		lblName.setBounds(10, 10, 356, 59);
 		contentPane.add(lblName);
 		
-		lblssn_default = new JLabel("預設SSN");
+		lblssn_default = new JLabel("default SSN");
 		lblssn_default.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 25));
 		lblssn_default.setBounds(131, 64, 244, 59);
 		contentPane.add(lblssn_default);
 		
-		lblpw = new JLabel("預設PW");
+		lblpw = new JLabel("default PW");
 		lblpw.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 25));
 		lblpw.setBounds(131, 114, 244, 59);
 		contentPane.add(lblpw);
 		
 		textArea = new JTextArea();
 		textArea.setBackground(SystemColor.menu);
-		textArea.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 12));
+		textArea.setFont(new Font("微軟正黑體", Font.PLAIN, 14));
 		textArea.setEditable(false);
-		textArea.setBounds(413, 296, 294, 206);
+		textArea.setBounds(413, 314, 294, 144);
 		contentPane.add(textArea);
 		
 		JButton btnEditPersonalInformation = new JButton("Edit personal information");

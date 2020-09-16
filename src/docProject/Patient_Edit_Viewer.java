@@ -148,7 +148,7 @@ public class Patient_Edit_Viewer extends JFrame
 		contentPane.add(textFieldLname);
 		
 		textFieldAddress = new JTextField();
-		textFieldAddress.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 13));
+		textFieldAddress.setFont(new Font("微軟正黑體", Font.PLAIN, 13));
 		textFieldAddress.setColumns(10);
 		textFieldAddress.setBounds(146, 169, 320, 35);
 		contentPane.add(textFieldAddress);

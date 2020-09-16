@@ -22,6 +22,9 @@ import javax.swing.event.ListSelectionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
+import java.awt.SystemColor;
+import java.awt.Toolkit;
+import java.awt.Color;
 
 public class HistoryDiagViewer extends JFrame
 {
@@ -60,85 +63,92 @@ public class HistoryDiagViewer extends JFrame
 	 */
 	public HistoryDiagViewer()
 	{
+		setTitle("History Diagnosis");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(HistoryDiagViewer.class.getResource("/Icon/paper_plane.png")));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 682, 539);
+		setBounds(100, 100, 682, 470);
 		contentPane = new JPanel();
+		contentPane.setBackground(SystemColor.text);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
 		JLabel lblNewLabel = new JLabel("History Patient Dianosis");
-		lblNewLabel.setFont(new Font("新細明體", Font.PLAIN, 15));
+		lblNewLabel.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 22));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		contentPane.add(lblNewLabel, BorderLayout.NORTH);
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(SystemColor.text);
 		contentPane.add(panel, BorderLayout.WEST);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		panel.add(scrollPane);
 		
 		list = new JList<String>();
+		list.setBackground(SystemColor.inactiveCaptionBorder);
 		list.setVisibleRowCount(18);
-		list.setFont(new Font("新細明體", Font.PLAIN, 20));
+		list.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 20));
 		scrollPane.setViewportView(list);
 		
 		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(SystemColor.text);
 		contentPane.add(panel_1, BorderLayout.CENTER);
 		panel_1.setLayout(null);
 		
 		JLabel lblNewLabel_1 = new JLabel("Patient's SSN");
-		lblNewLabel_1.setFont(new Font("新細明體", Font.PLAIN, 20));
+		lblNewLabel_1.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 19));
 		lblNewLabel_1.setBounds(10, 10, 117, 32);
 		panel_1.add(lblNewLabel_1);
 		
 		lblpatientsSsn = new JLabel("(Patient's SSN)");
-		lblpatientsSsn.setFont(new Font("新細明體", Font.PLAIN, 20));
+		lblpatientsSsn.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 20));
 		lblpatientsSsn.setBounds(155, 10, 225, 32);
 		panel_1.add(lblpatientsSsn);
 		
-		JLabel label = new JLabel("診斷結果");
-		label.setFont(new Font("新細明體", Font.PLAIN, 20));
-		label.setBounds(10, 52, 117, 32);
-		panel_1.add(label);
+		JLabel lblDiagnosis = new JLabel("Diagnosis");
+		lblDiagnosis.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 20));
+		lblDiagnosis.setBounds(10, 52, 117, 32);
+		panel_1.add(lblDiagnosis);
 		
-		JLabel label_1 = new JLabel("治療方式");
-		label_1.setFont(new Font("新細明體", Font.PLAIN, 20));
-		label_1.setBounds(10, 94, 117, 32);
-		panel_1.add(label_1);
+		JLabel lblCureMethod = new JLabel("Cure Method");
+		lblCureMethod.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 20));
+		lblCureMethod.setBounds(10, 94, 117, 32);
+		panel_1.add(lblCureMethod);
 		
-		JLabel label_2 = new JLabel("治療用物");
-		label_2.setFont(new Font("新細明體", Font.PLAIN, 20));
-		label_2.setBounds(10, 136, 117, 32);
-		panel_1.add(label_2);
+		JLabel lblCureBy = new JLabel("Cure By");
+		lblCureBy.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 20));
+		lblCureBy.setBounds(10, 136, 117, 32);
+		panel_1.add(lblCureBy);
 		
-		JLabel label_3 = new JLabel("附註");
-		label_3.setFont(new Font("新細明體", Font.PLAIN, 20));
-		label_3.setBounds(10, 178, 117, 32);
-		panel_1.add(label_3);
+		JLabel lblNote = new JLabel("Note");
+		lblNote.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 20));
+		lblNote.setBounds(10, 178, 117, 32);
+		panel_1.add(lblNote);
 		
 		lbldiagnosis = new JLabel("(Diagnosis)");
-		lbldiagnosis.setFont(new Font("新細明體", Font.PLAIN, 20));
+		lbldiagnosis.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 20));
 		lbldiagnosis.setBounds(155, 52, 225, 32);
 		panel_1.add(lbldiagnosis);
 		
 		lblhowToCure = new JLabel("(How to cure)");
-		lblhowToCure.setFont(new Font("新細明體", Font.PLAIN, 20));
+		lblhowToCure.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 20));
 		lblhowToCure.setBounds(155, 94, 225, 32);
 		panel_1.add(lblhowToCure);
 		
 		lblmedicine = new JLabel("(Medicine)");
-		lblmedicine.setFont(new Font("新細明體", Font.PLAIN, 20));
+		lblmedicine.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 20));
 		lblmedicine.setBounds(155, 136, 225, 32);
 		panel_1.add(lblmedicine);
 		
 		lblnote = new JLabel("(Note)");
 		lblnote.setVerticalAlignment(SwingConstants.TOP);
-		lblnote.setFont(new Font("新細明體", Font.PLAIN, 20));
-		lblnote.setBounds(155, 178, 225, 116);
+		lblnote.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 20));
+		lblnote.setBounds(155, 178, 225, 149);
 		panel_1.add(lblnote);
 		
 		JButton btnNewButton = new JButton("Edit Patient's Information");
+		btnNewButton.setBackground(Color.LIGHT_GRAY);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) 
 			{
@@ -147,8 +157,8 @@ public class HistoryDiagViewer extends JFrame
 				viewer.set_default_info(lblpatientsSsn.getText());
 			}
 		});
-		btnNewButton.setFont(new Font("Bauhaus 93", Font.PLAIN, 25));
-		btnNewButton.setBounds(10, 406, 370, 56);
+		btnNewButton.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 20));
+		btnNewButton.setBounds(78, 337, 310, 56);
 		panel_1.add(btnNewButton);
 	}
 	

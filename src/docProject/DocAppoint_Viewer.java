@@ -11,19 +11,41 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JTextArea;
 import java.awt.Toolkit;
 import java.awt.SystemColor;
+import javax.swing.JList;
+import javax.swing.AbstractListModel;
+import javax.swing.DefaultListModel;
+import javax.swing.GrayFilter;
+import javax.swing.border.LineBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+
+import java.awt.Color;
+import javax.swing.JScrollPane;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
 
 public class DocAppoint_Viewer extends JFrame
 {
-	private JTextArea textArea_name;
-	private JTextArea textArea_ID;
-	private JTextArea textArea_Info;
-	private JTextArea textArea_day;
+	private DefaultListModel<Appointment> listModel=new DefaultListModel<>();
+	private JList<Appointment> jlist;
 	private JPanel contentPane;
+	private JLabel lblSsn ;
+	private JLabel lblName;
+	private JLabel lblBirthday;
+	private JLabel lblHeight;
+	private JLabel lblDay;
+	private JLabel lblWeight;
+	private JLabel lblBloodtype;
+	private Doctor doctor;
+	private Patient patient;
 
 	/**
 	 * Launch the application.
@@ -67,86 +89,179 @@ public class DocAppoint_Viewer extends JFrame
 		lblNewLabel.setBounds(10, 10, 601, 44);
 		contentPane.add(lblNewLabel);
 		
-		JLabel lblPatientName = new JLabel("Patient Name");
-		lblPatientName.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 19));
-		lblPatientName.setBounds(161, 64, 119, 24);
-		contentPane.add(lblPatientName);
-		
-		JLabel lblPatientId = new JLabel("Patient ID");
-		lblPatientId.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 19));
-		lblPatientId.setBounds(334, 64, 86, 24);
-		contentPane.add(lblPatientId);
-		
-		JLabel lblPatientInfo = new JLabel("Patient Info");
+		JLabel lblPatientInfo = new JLabel("---- Patient Info ----");
+		lblPatientInfo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPatientInfo.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 19));
-		lblPatientInfo.setBounds(484, 64, 106, 24);
+		lblPatientInfo.setBounds(350, 124, 200, 24);
 		contentPane.add(lblPatientInfo);
 		
-		textArea_name = new JTextArea();
-		textArea_name.setBackground(SystemColor.inactiveCaptionBorder);
-		textArea_name.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 11));
-		textArea_name.setEditable(false);
-		textArea_name.setBounds(147, 98, 149, 280);
-		contentPane.add(textArea_name);
+		JPanel panel = new JPanel();
+		panel.setBackground(SystemColor.text);
+		panel.setBounds(10, 49, 275, 357);
+		contentPane.add(panel);
 		
-		textArea_ID = new JTextArea();
-		textArea_ID.setBackground(SystemColor.inactiveCaptionBorder);
-		textArea_ID.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 11));
-		textArea_ID.setEditable(false);
-		textArea_ID.setBounds(306, 98, 146, 280);
-		contentPane.add(textArea_ID);
+		JScrollPane scrollPane = new JScrollPane();
+		panel.add(scrollPane);
 		
-		textArea_Info = new JTextArea();
-		textArea_Info.setBackground(SystemColor.inactiveCaptionBorder);
-		textArea_Info.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 11));
-		textArea_Info.setEditable(false);
-		textArea_Info.setBounds(462, 98, 149, 280);
-		contentPane.add(textArea_Info);
+		jlist = new JList<>();
+		jlist.setBackground(SystemColor.inactiveCaptionBorder);
+		jlist.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 12));
+		jlist.setVisibleRowCount(17);
+		scrollPane.setViewportView(jlist);
 		
-		textArea_day = new JTextArea();
-		textArea_day.setBackground(SystemColor.inactiveCaptionBorder);
-		textArea_day.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 11));
-		textArea_day.setEditable(false);
-		textArea_day.setBounds(10, 98, 127, 280);
-		contentPane.add(textArea_day);
+		JLabel lblPatientSsn = new JLabel("Patient SSN:");
+		lblPatientSsn.setHorizontalAlignment(SwingConstants.LEFT);
+		lblPatientSsn.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 19));
+		lblPatientSsn.setBounds(295, 158, 136, 24);
+		contentPane.add(lblPatientSsn);
 		
-		JLabel lblReversedDay = new JLabel("Reversed Day");
-		lblReversedDay.setHorizontalAlignment(SwingConstants.CENTER);
-		lblReversedDay.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 19));
-		lblReversedDay.setBounds(10, 64, 127, 24);
-		contentPane.add(lblReversedDay);
+		JLabel lblPatientName = new JLabel("Patient Name:");
+		lblPatientName.setHorizontalAlignment(SwingConstants.LEFT);
+		lblPatientName.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 19));
+		lblPatientName.setBounds(295, 192, 136, 24);
+		contentPane.add(lblPatientName);
 		
-		JLabel lblNotePatientInfo = new JLabel("Note: Patient Info is in the order of height>weight>blood-type");
-		lblNotePatientInfo.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 14));
-		lblNotePatientInfo.setBounds(223, 388, 398, 24);
-		contentPane.add(lblNotePatientInfo);
+		JLabel lblPatientBirthday = new JLabel("Patient Birth:");
+		lblPatientBirthday.setHorizontalAlignment(SwingConstants.LEFT);
+		lblPatientBirthday.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 19));
+		lblPatientBirthday.setBounds(295, 226, 136, 24);
+		contentPane.add(lblPatientBirthday);
+		
+		JLabel lblPatientHeight = new JLabel("Patient Height:");
+		lblPatientHeight.setHorizontalAlignment(SwingConstants.LEFT);
+		lblPatientHeight.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 19));
+		lblPatientHeight.setBounds(295, 260, 136, 24);
+		contentPane.add(lblPatientHeight);
+		
+		JLabel lblPatientWeight = new JLabel("Patient Weight:");
+		lblPatientWeight.setHorizontalAlignment(SwingConstants.LEFT);
+		lblPatientWeight.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 19));
+		lblPatientWeight.setBounds(295, 294, 136, 24);
+		contentPane.add(lblPatientWeight);
+		
+		JLabel lblPatientBlood = new JLabel("Patient Blood:");
+		lblPatientBlood.setHorizontalAlignment(SwingConstants.LEFT);
+		lblPatientBlood.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 19));
+		lblPatientBlood.setBounds(295, 328, 136, 24);
+		contentPane.add(lblPatientBlood);
+		
+		lblSsn = new JLabel("SSN");
+		lblSsn.setHorizontalAlignment(SwingConstants.LEFT);
+		lblSsn.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 19));
+		lblSsn.setBounds(441, 158, 170, 24);
+		contentPane.add(lblSsn);
+		
+		lblName = new JLabel("Name");
+		lblName.setHorizontalAlignment(SwingConstants.LEFT);
+		lblName.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 19));
+		lblName.setBounds(441, 192, 170, 24);
+		contentPane.add(lblName);
+		
+		lblBirthday = new JLabel("Birthday");
+		lblBirthday.setHorizontalAlignment(SwingConstants.LEFT);
+		lblBirthday.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 19));
+		lblBirthday.setBounds(441, 226, 170, 24);
+		contentPane.add(lblBirthday);
+		
+		lblHeight = new JLabel("Height");
+		lblHeight.setHorizontalAlignment(SwingConstants.LEFT);
+		lblHeight.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 19));
+		lblHeight.setBounds(441, 260, 170, 24);
+		contentPane.add(lblHeight);
+		
+		lblWeight = new JLabel("Weight");
+		lblWeight.setHorizontalAlignment(SwingConstants.LEFT);
+		lblWeight.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 19));
+		lblWeight.setBounds(441, 294, 170, 24);
+		contentPane.add(lblWeight);
+		
+		lblBloodtype = new JLabel("Bloodtype");
+		lblBloodtype.setHorizontalAlignment(SwingConstants.LEFT);
+		lblBloodtype.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 19));
+		lblBloodtype.setBounds(441, 328, 170, 24);
+		contentPane.add(lblBloodtype);
+		
+		JButton btnAddDiagnose = new JButton("Add Diagnose");
+		btnAddDiagnose.setIcon(new ImageIcon(DocAppoint_Viewer.class.getResource("/Icon/officetime.png")));
+		btnAddDiagnose.setBackground(Color.LIGHT_GRAY);
+		btnAddDiagnose.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) 
+			{
+				List<Diagnosis> list=new ArrayList<>();
+				List<Patient> patlist=new ArrayList<>();
+				try
+				{
+					XML_Reader reader=new XML_Reader();
+					list=reader.allDIAGread();
+					patlist=reader.all_PATread();
+				} catch (Exception e2)
+				{
+					// TODO: handle exception
+				}
+				
+				for(Patient p:patlist)
+				{
+					if(jlist.getSelectedValue().getPAtID().equals(p.getSSN()))
+					{
+						patient=p;
+					}
+				}
+				DocAddDiag_Viewer viewer=new DocAddDiag_Viewer();
+				viewer.set_default(list, doctor, patient);
+				viewer.setVisible(true);
+			}
+		});
+		btnAddDiagnose.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 18));
+		btnAddDiagnose.setBounds(411, 362, 200, 44);
+		contentPane.add(btnAddDiagnose);
+		
+		JLabel lblAppointment = new JLabel("---- Appointment ----");
+		lblAppointment.setHorizontalAlignment(SwingConstants.CENTER);
+		lblAppointment.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 19));
+		lblAppointment.setBounds(350, 49, 200, 24);
+		contentPane.add(lblAppointment);
+		
+		JLabel lblAppointmentTime = new JLabel("Time:");
+		lblAppointmentTime.setHorizontalAlignment(SwingConstants.LEFT);
+		lblAppointmentTime.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 19));
+		lblAppointmentTime.setBounds(295, 83, 136, 24);
+		contentPane.add(lblAppointmentTime);
+		
+		lblDay = new JLabel("Day");
+		lblDay.setHorizontalAlignment(SwingConstants.LEFT);
+		lblDay.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 19));
+		lblDay.setBounds(441, 83, 170, 24);
+		contentPane.add(lblDay);
 	}
 	
-	public void set_defalut(List<Appointment> list) throws XMLStreamException, IOException
+	public void set_defalut(List<Appointment> list,Doctor d) throws XMLStreamException, IOException
 	{
+		this.doctor=d;
 		XML_Reader reader=new XML_Reader();
 		List<Patient> patList=reader.all_PATread();
-		String s1="";
-		String s2="";
-		String s3="";
-		String s4="";
 		for(Appointment a:list)
 		{
-			for(Patient p:patList)
-			{
-				if(a.getPAtID().equals(p.getSSN()))
-				{
-					s1+=a.getDay()+"\n";
-					s2+=p.getFname()+"\n";
-					s3+=p.getSSN()+"\n";
-					s4+=p.getHeight()+"-"+p.getWeight()+"-"+p.getBlood()+"\n";
-				}
-			} 
+			listModel.addElement(a);
 		}
-		this.textArea_day.setText(s1);
-		this.textArea_name.setText(s2);
-		this.textArea_ID.setText(s3);
-		this.textArea_Info.setText(s4);
+		jlist.setModel(listModel);
+		jlist.addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent arg0) 
+			{
+				for(Patient p:patList)
+				{
+					if(jlist.getSelectedValue().getPAtID().equals(p.getSSN()))
+					{
+						lblSsn.setText(p.getSSN());
+						lblName.setText(p.getFname()+" "+p.getLname());
+						lblBirthday.setText(p.getBirth());
+						lblHeight.setText(p.getHeight());
+						lblWeight.setText(p.getWeight());
+						lblBloodtype.setText(p.getBlood());
+						lblDay.setText(jlist.getSelectedValue().getDay());
+					}
+				}
+			}
+		});
+		
 	}
-
 }

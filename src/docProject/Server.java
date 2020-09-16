@@ -17,7 +17,7 @@ public class Server extends Thread
 	private String last_string="";
 	private ServerSocket SS;
 	private List<Socket> list=new ArrayList<Socket>();//list to collect clients which connect to this server
-	//private List<Socket> temp_list=new ArrayList<Socket>();
+	private List<Socket> temp_list=new ArrayList<Socket>();
 	private Doctor doctor;
 	private int port;
 	
@@ -67,21 +67,23 @@ public class Server extends Thread
 			{
 				list.add(SS.accept());//while server thread run,add the new connected client socket to list
 				
-				/*if(list.size()>=2)
+				List<Socket> tempList=new ArrayList<>();
+				for(Socket s:list)
 				{
-					for(Socket s:list)
+					DataInputStream input=new DataInputStream(s.getInputStream());
+					String string=input.readUTF();
+					System.out.println("check condition--"+s.toString()+string);
+					if(string.equals("finished"))
 					{
-						DataInputStream input=new DataInputStream(s.getInputStream());
-						String string=input.readUTF();
-						System.out.println("check condition--"+s.toString()+string);
-						if(string.equals("finished"))
-						{
-							lastSocket=s;
-							list.remove(s);
-							System.out.println("Removed>>"+s.toString());
-						}
+						tempList.add(s);
+						System.out.println("Removed>>"+s.toString());
 					}
-				}*/
+				}
+				
+				for(Socket s:tempList)
+				{
+					list.remove(s);
+				}
 				
 				int next_person=0;
 				for(Socket s:list)//for loop which do for all socket listed
@@ -110,17 +112,23 @@ public class Server extends Thread
 					}
 				}
 				
-				for(Socket s:list)
+				/*for(Socket s:list)
 				{
 					DataInputStream input=new DataInputStream(s.getInputStream());
 					String string=input.readUTF();
 					System.out.println("check condition--"+s.toString()+string);
-					if(string.equals("finished"))
+					/*if(string.equals("finished"))
 					{
 						lastSocket=s;
 						list.remove(s);
 						System.out.println("Removed>>"+s.toString());
 					}
+				}*/
+				for(Socket s:list)
+				{
+					DataInputStream input=new DataInputStream(s.getInputStream());
+					String string=input.readUTF();
+					System.out.println("check condition--"+s.toString()+string);
 				}
 			
 			}

@@ -23,6 +23,7 @@ import java.awt.event.ActionEvent;
 import java.awt.Color;
 import java.awt.Toolkit;
 import java.awt.SystemColor;
+import javax.swing.ImageIcon;
 
 public class Reverse_Viewer extends JFrame
 {
@@ -88,14 +89,16 @@ public class Reverse_Viewer extends JFrame
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 551, 308);
 		contentPane = new JPanel();
-		contentPane.setBackground(SystemColor.inactiveCaption);
+		contentPane.setBackground(SystemColor.text);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		lblPatientpatientReverseTo = new JLabel("Patient:(patient) reverse to Doctor:(doctor) appointment");
+		lblPatientpatientReverseTo = new JLabel("(Patient) reverse to Dr.(Doctor)'s appointment");
+		lblPatientpatientReverseTo.setIcon(new ImageIcon(Reverse_Viewer.class.getResource("/Icon/appointment-1 (2).png")));
+		lblPatientpatientReverseTo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPatientpatientReverseTo.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 17));
-		lblPatientpatientReverseTo.setBounds(10, 10, 445, 42);
+		lblPatientpatientReverseTo.setBounds(10, 10, 515, 42);
 		contentPane.add(lblPatientpatientReverseTo);
 		
 		JPanel panel = new JPanel();
@@ -619,7 +622,7 @@ public class Reverse_Viewer extends JFrame
 	{
 		this.doctor=d;
 		this.patient=p;
-		lblPatientpatientReverseTo.setText("Patient:"+patient.getFname()+" reverse to Doctor:"+doctor.getFName()+ "'s appointment");
+		lblPatientpatientReverseTo.setText(patient.getFname()+" reverse to Dr."+doctor.getFName()+ "'s appointment");
 		String day1=d.getOFTime().get(0);
 		String day2=d.getOFTime().get(1);
 		String day3=d.getOFTime().get(2);

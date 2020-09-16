@@ -176,7 +176,7 @@ public class PatWindow extends JFrame
 		});
 		
 		btnNewButton.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 25));
-		btnNewButton.setBounds(252, 194, 145, 43);
+		btnNewButton.setBounds(209, 193, 145, 43);
 		contentPane.add(btnNewButton);
 	}
 	

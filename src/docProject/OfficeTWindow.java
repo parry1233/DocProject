@@ -20,6 +20,10 @@ import java.util.ArrayList;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.SystemColor;
+import java.awt.Color;
+import java.awt.Toolkit;
+import javax.swing.ImageIcon;
 
 public class OfficeTWindow extends JFrame
 {
@@ -77,6 +81,8 @@ public class OfficeTWindow extends JFrame
 	 */
 	public OfficeTWindow()
 	{
+		setTitle("Edit Office Time");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(OfficeTWindow.class.getResource("/Icon/paper_plane.png")));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 740, 411);
 		contentPane = new JPanel();
@@ -85,6 +91,7 @@ public class OfficeTWindow extends JFrame
 		setContentPane(contentPane);
 		
 		JButton btnNewButton = new JButton("SAVE");
+		btnNewButton.setBackground(Color.LIGHT_GRAY);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) 
 			{
@@ -111,161 +118,184 @@ public class OfficeTWindow extends JFrame
 				}
 			}
 		});
-		btnNewButton.setFont(new Font("新細明體", Font.BOLD, 25));
+		btnNewButton.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 25));
 		contentPane.add(btnNewButton, BorderLayout.SOUTH);
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(SystemColor.inactiveCaptionBorder);
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
 		Mon1 = new JRadioButton("");
+		Mon1.setBackground(SystemColor.inactiveCaptionBorder);
 		Mon1.setBounds(138, 153, 21, 23);
 		panel.add(Mon1);
 		
 		Mon2 = new JRadioButton("");
+		Mon2.setBackground(SystemColor.inactiveCaptionBorder);
 		Mon2.setBounds(138, 207, 21, 23);
 		panel.add(Mon2);
 		
 		Mon3 = new JRadioButton("");
+		Mon3.setBackground(SystemColor.inactiveCaptionBorder);
 		Mon3.setBounds(138, 258, 21, 23);
 		panel.add(Mon3);
 		
 		Tue1 = new JRadioButton("");
+		Tue1.setBackground(SystemColor.inactiveCaptionBorder);
 		Tue1.setBounds(220, 153, 21, 23);
 		panel.add(Tue1);
 		
 		Tue2 = new JRadioButton("");
+		Tue2.setBackground(SystemColor.inactiveCaptionBorder);
 		Tue2.setBounds(220, 207, 21, 23);
 		panel.add(Tue2);
 		
 		Tue3 = new JRadioButton("");
+		Tue3.setBackground(SystemColor.inactiveCaptionBorder);
 		Tue3.setBounds(220, 258, 21, 23);
 		panel.add(Tue3);
 		
 		Wed1 = new JRadioButton("");
+		Wed1.setBackground(SystemColor.inactiveCaptionBorder);
 		Wed1.setBounds(312, 153, 21, 23);
 		panel.add(Wed1);
 		
 		Wed2 = new JRadioButton("");
+		Wed2.setBackground(SystemColor.inactiveCaptionBorder);
 		Wed2.setBounds(312, 207, 21, 23);
 		panel.add(Wed2);
 		
 		Wed3 = new JRadioButton("");
+		Wed3.setBackground(SystemColor.inactiveCaptionBorder);
 		Wed3.setBounds(312, 258, 21, 23);
 		panel.add(Wed3);
 		
 		Thu1 = new JRadioButton("");
+		Thu1.setBackground(SystemColor.inactiveCaptionBorder);
 		Thu1.setBounds(400, 153, 21, 23);
 		panel.add(Thu1);
 		
 		Thu2 = new JRadioButton("");
+		Thu2.setBackground(SystemColor.inactiveCaptionBorder);
 		Thu2.setBounds(400, 207, 21, 23);
 		panel.add(Thu2);
 		
 		Thu3 = new JRadioButton("");
+		Thu3.setBackground(SystemColor.inactiveCaptionBorder);
 		Thu3.setBounds(400, 258, 21, 23);
 		panel.add(Thu3);
 		
 		Fri1 = new JRadioButton("");
+		Fri1.setBackground(SystemColor.inactiveCaptionBorder);
 		Fri1.setBounds(482, 153, 21, 23);
 		panel.add(Fri1);
 		
 		Fri2 = new JRadioButton("");
+		Fri2.setBackground(SystemColor.inactiveCaptionBorder);
 		Fri2.setBounds(482, 207, 21, 23);
 		panel.add(Fri2);
 		
 		Fri3 = new JRadioButton("");
+		Fri3.setBackground(SystemColor.inactiveCaptionBorder);
 		Fri3.setBounds(482, 258, 21, 23);
 		panel.add(Fri3);
 		
 		Sat1 = new JRadioButton("");
+		Sat1.setBackground(SystemColor.inactiveCaptionBorder);
 		Sat1.setBounds(568, 153, 21, 23);
 		panel.add(Sat1);
 		
 		Sat2 = new JRadioButton("");
+		Sat2.setBackground(SystemColor.inactiveCaptionBorder);
 		Sat2.setBounds(568, 207, 21, 23);
 		panel.add(Sat2);
 		
 		Sat3 = new JRadioButton("");
+		Sat3.setBackground(SystemColor.inactiveCaptionBorder);
 		Sat3.setBounds(568, 258, 21, 23);
 		panel.add(Sat3);
 		
 		Sun1 = new JRadioButton("");
+		Sun1.setBackground(SystemColor.inactiveCaptionBorder);
 		Sun1.setBounds(653, 153, 21, 23);
 		panel.add(Sun1);
 		
 		Sun2 = new JRadioButton("");
+		Sun2.setBackground(SystemColor.inactiveCaptionBorder);
 		Sun2.setBounds(653, 207, 21, 23);
 		panel.add(Sun2);
 		
 		Sun3 = new JRadioButton("");
+		Sun3.setBackground(SystemColor.inactiveCaptionBorder);
 		Sun3.setBounds(653, 258, 21, 23);
 		panel.add(Sun3);
 		
 		JLabel Monday = new JLabel("Monday");
 		Monday.setHorizontalAlignment(SwingConstants.CENTER);
-		Monday.setFont(new Font("新細明體", Font.PLAIN, 20));
+		Monday.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 19));
 		Monday.setBounds(104, 80, 82, 47);
 		panel.add(Monday);
 		
 		JLabel Tuesday = new JLabel("Tuesday");
 		Tuesday.setHorizontalAlignment(SwingConstants.CENTER);
-		Tuesday.setFont(new Font("新細明體", Font.PLAIN, 20));
+		Tuesday.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 19));
 		Tuesday.setBounds(184, 80, 82, 47);
 		panel.add(Tuesday);
 		
 		JLabel Wednesday = new JLabel("Wednesday");
 		Wednesday.setHorizontalAlignment(SwingConstants.CENTER);
-		Wednesday.setFont(new Font("新細明體", Font.PLAIN, 20));
-		Wednesday.setBounds(268, 80, 93, 47);
+		Wednesday.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 19));
+		Wednesday.setBounds(261, 80, 108, 47);
 		panel.add(Wednesday);
 		
 		JLabel Thursday = new JLabel("Thursday");
 		Thursday.setHorizontalAlignment(SwingConstants.CENTER);
-		Thursday.setFont(new Font("新細明體", Font.PLAIN, 20));
+		Thursday.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 19));
 		Thursday.setBounds(371, 80, 82, 47);
 		panel.add(Thursday);
 		
 		JLabel Friday = new JLabel("Friday");
 		Friday.setHorizontalAlignment(SwingConstants.CENTER);
-		Friday.setFont(new Font("新細明體", Font.PLAIN, 20));
+		Friday.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 19));
 		Friday.setBounds(455, 80, 82, 47);
 		panel.add(Friday);
 		
 		JLabel Saturday = new JLabel("Saturday");
 		Saturday.setHorizontalAlignment(SwingConstants.CENTER);
-		Saturday.setFont(new Font("新細明體", Font.PLAIN, 20));
+		Saturday.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 19));
 		Saturday.setBounds(536, 80, 82, 47);
 		panel.add(Saturday);
 		
 		JLabel Sunday = new JLabel("Sunday");
 		Sunday.setHorizontalAlignment(SwingConstants.CENTER);
-		Sunday.setFont(new Font("新細明體", Font.PLAIN, 20));
+		Sunday.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 19));
 		Sunday.setBounds(622, 80, 82, 47);
 		panel.add(Sunday);
 		
 		JLabel lblMorning = new JLabel("Morning");
 		lblMorning.setHorizontalAlignment(SwingConstants.CENTER);
-		lblMorning.setFont(new Font("新細明體", Font.PLAIN, 25));
+		lblMorning.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 22));
 		lblMorning.setBounds(10, 137, 108, 39);
 		panel.add(lblMorning);
 		
 		JLabel lblAfternoon = new JLabel("Afternoon");
 		lblAfternoon.setHorizontalAlignment(SwingConstants.CENTER);
-		lblAfternoon.setFont(new Font("新細明體", Font.PLAIN, 25));
+		lblAfternoon.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 22));
 		lblAfternoon.setBounds(10, 191, 108, 39);
 		panel.add(lblAfternoon);
 		
 		JLabel lblNight = new JLabel("Night");
 		lblNight.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNight.setFont(new Font("新細明體", Font.PLAIN, 25));
+		lblNight.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 22));
 		lblNight.setBounds(10, 240, 108, 39);
 		panel.add(lblNight);
 		
 		JLabel lblNewLabel = new JLabel("Office Time");
+		lblNewLabel.setIcon(new ImageIcon(OfficeTWindow.class.getResource("/Icon/calendar.png")));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setFont(new Font("新細明體", Font.BOLD, 25));
-		lblNewLabel.setBounds(104, 32, 583, 38);
+		lblNewLabel.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 38));
+		lblNewLabel.setBounds(10, 23, 677, 47);
 		panel.add(lblNewLabel);
 	}
 	
@@ -564,5 +594,4 @@ public class OfficeTWindow extends JFrame
 			e1.printStackTrace();
 		}
 	}
-	
 }

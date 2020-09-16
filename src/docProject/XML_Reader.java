@@ -176,6 +176,84 @@ public class XML_Reader
 		}
 	}
 	
+	public List<Diagnosis> allDIAGread()
+	{
+		List<Diagnosis> diagList=new ArrayList<>();
+		GetAllDiag_handler handler=new GetAllDiag_handler();
+    	Diagnosis d=new Diagnosis();
+    	try 
+		{
+			SAXParserFactory factory=SAXParserFactory.newInstance();
+			SAXParser saxParser=factory.newSAXParser();
+			saxParser.parse("Matches.xml", handler);
+		}
+		catch(Exception e)
+		{
+			//TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    	for(int i=0;i<handler.Read().get(0).size();i++)
+    	{
+    		d=new Diagnosis(handler.Read().get(0).get(i),handler.Read().get(1).get(i),handler.Read().get(2).get(i),handler.Read().get(3).get(i),handler.Read().get(4).get(i),handler.Read().get(5).get(i));
+    		diagList.add(d);
+    	}
+    	return diagList;
+	} 
+	
+	public void write_NewDiagnosis(List<Diagnosis>list) throws XMLStreamException, IOException
+	{
+		try 
+		{
+			DefaultHandler handler=new DefaultHandler();
+			SAXParserFactory factory=SAXParserFactory.newInstance();
+			SAXParser saxParser=factory.newSAXParser();
+			saxParser.parse("Matches.xml", handler);
+		}
+		catch(Exception e)
+		{
+			//TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		StringWriter stringWriter=new StringWriter();
+		XMLOutputFactory xmlOutputFactory=XMLOutputFactory.newInstance();
+		XMLStreamWriter xmlStreamWriter=xmlOutputFactory.createXMLStreamWriter(stringWriter);
+		
+		xmlStreamWriter.writeStartDocument();
+		xmlStreamWriter.writeStartElement("Matches");
+		
+		for(Diagnosis d:list)
+		{
+			xmlStreamWriter.writeStartElement("Match");
+			xmlStreamWriter.writeAttribute("pSSN",d.getPSSN());
+			xmlStreamWriter.writeAttribute("dID",d.getdID());
+			xmlStreamWriter.writeStartElement("Diagnosis");
+			xmlStreamWriter.writeCharacters(d.getDiagnosis());
+			xmlStreamWriter.writeEndElement();
+			xmlStreamWriter.writeStartElement("Result");
+			xmlStreamWriter.writeAttribute("by",d.getR_By());
+			xmlStreamWriter.writeCharacters(d.getR_Detail());
+			xmlStreamWriter.writeEndElement();
+			xmlStreamWriter.writeStartElement("Note");
+			xmlStreamWriter.writeCharacters(d.getNote());
+			xmlStreamWriter.writeEndElement();
+			xmlStreamWriter.writeEndElement();
+		}
+		
+		xmlStreamWriter.writeEndDocument();
+		
+		xmlStreamWriter.close();
+		
+		String xmlstring=stringWriter.getBuffer().toString();
+		FileWriter out=new FileWriter("Matches.xml",false);
+		
+		out.write(xmlstring);
+		out.close();
+		
+		stringWriter.close();
+	}
+	
 	public void writeAppoint_first_time() throws XMLStreamException, IOException
 	{
 		StringWriter stringWriter=new StringWriter();

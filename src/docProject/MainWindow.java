@@ -77,7 +77,7 @@ public class MainWindow extends JFrame
 		
 		setTitle("Welcome");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 413, 287);
 		contentPane = new JPanel();
 		contentPane.setBackground(SystemColor.text);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -154,7 +154,7 @@ public class MainWindow extends JFrame
 		panel_3.setLayout(null);
 		
 		JLabel lblWelcomeToCcu = new JLabel("CCU Hospital");
-		lblWelcomeToCcu.setBounds(83, 50, 262, 65);
+		lblWelcomeToCcu.setBounds(55, 56, 280, 54);
 		panel_3.add(lblWelcomeToCcu);
 		lblWelcomeToCcu.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 40));
 		lblWelcomeToCcu.setHorizontalAlignment(SwingConstants.CENTER);
@@ -162,14 +162,29 @@ public class MainWindow extends JFrame
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(MainWindow.class.getResource("/Icon/hospital-icon (1).png")));
 		lblNewLabel.setFont(new Font("新細明體", Font.PLAIN, 14));
-		lblNewLabel.setBounds(41, 62, 32, 45);
+		lblNewLabel.setBounds(23, 57, 32, 45);
 		panel_3.add(lblNewLabel);
 		
-		JLabel lblDesignBy = new JLabel("2019 Designed by Perry / Yucheng Lin");
+		JLabel lblDesignBy = new JLabel("2019 Designed by Perry");
 		lblDesignBy.setHorizontalAlignment(SwingConstants.CENTER);
 		lblDesignBy.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 15));
-		lblDesignBy.setBounds(83, 122, 275, 30);
+		lblDesignBy.setBounds(0, 112, 389, 30);
 		panel_3.add(lblDesignBy);
+		
+		JButton btnNewButton_2 = new JButton("");
+		btnNewButton_2.setToolTipText("To MySQL");
+		btnNewButton_2.setBorder(null);
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) 
+			{
+				Comfirm_form form=new Comfirm_form();
+				form.setVisible(true);
+			}
+		});
+		btnNewButton_2.setBackground(SystemColor.text);
+		btnNewButton_2.setBounds(357, 0, 32, 33);
+		panel_3.add(btnNewButton_2);
+		btnNewButton_2.setIcon(new ImageIcon(MainWindow.class.getResource("/Icon/our_proccess.png")));
 		
 		try
 		{

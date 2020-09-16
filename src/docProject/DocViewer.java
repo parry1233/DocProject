@@ -224,7 +224,7 @@ public class DocViewer extends JFrame
 						if(thisList.size()!=0)
 						{
 							DocAppoint_Viewer viewer=new DocAppoint_Viewer();
-							viewer.set_defalut(thisList);
+							viewer.set_defalut(thisList,thisDoctor);
 							viewer.setVisible(true);
 						}
 						else 

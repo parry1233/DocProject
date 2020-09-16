@@ -28,13 +28,14 @@ import java.awt.Toolkit;
 
 public class ClientReversing_Viewer extends JFrame
 {
+	private JButton btnSelect;
 	private Patient thisPatient;
 	private Doctor thisdoctor;
 	private String selected;
 	private String now_info;
 	private List<Server> doc_serList=new ArrayList<Server>();
 	private JPanel contentPane;
-	public Client client;
+	//public Client client;
 	private JComboBox<String> comboBox;
 	private JTextArea textArea;
 	private int selected_port;
@@ -107,19 +108,25 @@ public class ClientReversing_Viewer extends JFrame
 		
 		textArea = new JTextArea();
 		textArea.setBackground(Color.LIGHT_GRAY);
-		textArea.setFont(new Font("Courier New", Font.PLAIN, 15));
+		textArea.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 15));
 		textArea.setEditable(false);
 		textArea.setBounds(10, 57, 362, 71);
 		contentPane.add(textArea);
 		
-		JButton btnSelect = new JButton("Select");
+		btnSelect = new JButton("Select");
 		btnSelect.setBackground(Color.LIGHT_GRAY);
 		btnSelect.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) 
 			{
-				client=new Client("127.0.0.1",selected_port); 
+				if (e.getSource() == btnSelect)
+				{
+					JOptionPane.showMessageDialog(null, "請稍候", "Info", JOptionPane.INFORMATION_MESSAGE);
+				}
+				Client client=new Client("127.0.0.1",selected_port);
 				client.setDocPat(thisdoctor,thisPatient);
+				//System.out.println(client.getState());
 				client.start();
+				//System.out.println(client.getState());
 				/*if(client.getCheck())
 				{
 					try

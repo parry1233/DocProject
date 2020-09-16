@@ -5,6 +5,7 @@ import java.awt.event.WindowEvent;
 import java.io.DataInput;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.IOException;
 import java.net.ConnectException;
 import java.net.InetSocketAddress;
 import java.net.Socket;
@@ -20,8 +21,9 @@ public class Client extends Thread
 	private Doctor doctor;
 	private boolean check_if_opened=false;
 	private String stateString="unfinished";
+	private DataOutputStream output;
 	
-	private boolean check=false;
+	private boolean check_closed=false;
 	
 	public Client(String ip,int port)
 	{
@@ -43,14 +45,9 @@ public class Client extends Thread
 		return this.doctor;
 	}
 	
-	public boolean getCheck()
-	{
-		return this.check;
-	}
-	
 	public void run() 
 	{
-		setState("unfinished");
+		//setState("unfinished");
 		connect(ipString, portString);
 	}
 	
@@ -88,9 +85,18 @@ public class Client extends Thread
 	{
 		try
 		{	
-			DataInputStream input=new DataInputStream(s.getInputStream());;
+			DataInputStream input=new DataInputStream(s.getInputStream());
+			output=new DataOutputStream(s.getOutputStream());
 			while(true)
 			{
+				if(check_closed)
+				{
+					setState("finished");
+				}
+				//DataOutputStream output=new DataOutputStream(s.getOutputStream());
+				output.writeUTF(stateString);
+				output.flush();
+				
 				String string=input.readUTF();
 				System.out.println("[Client("+s.toString()+")] "+string);
 				if(string.equals("no"))
@@ -114,8 +120,9 @@ public class Client extends Thread
 					this.check_if_opened=true;
 				}
 				
-				DataOutputStream output=new DataOutputStream(s.getOutputStream());
-				output.writeUTF(stateString);
+				//DataOutputStream output=new DataOutputStream(s.getOutputStream());
+				//output.writeUTF(stateString);
+				//output.flush();
 			}
 		}
 		catch (Exception e) 
@@ -127,6 +134,14 @@ public class Client extends Thread
 	public void setState(String s)
 	{
 		this.stateString=s;
+	}
+	public void setCheck()
+	{
+		this.check_closed=true;
+	}
+	public String getStateStirng()
+	{
+		return this.stateString;
 	}
 	
 	public void openViewer() 
@@ -142,14 +157,25 @@ public class Client extends Thread
 	            @Override
 	            public void windowClosing(WindowEvent e) {
 	            	setState("finished");
-	            	System.out.println("set finished");
+	            	setCheck();
+	            	System.out.println(getStateStirng());
 	            	System.out.println("closing...");
 	            }
 
 	            @Override
 	            public void windowClosed(WindowEvent e) {
 	            	setState("finished");
-	            	System.out.println("set finished");
+	            	setCheck();
+	            	try
+					{
+						output.writeUTF(stateString);
+						output.flush();
+					} catch (IOException e1)
+					{
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+	            	System.out.println(getStateStirng());
 	            	System.out.println("closed");
 	            }
 

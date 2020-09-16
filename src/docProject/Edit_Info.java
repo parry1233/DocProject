@@ -23,6 +23,9 @@ import javax.swing.DefaultComboBoxModel;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
+import java.awt.Color;
+import java.awt.SystemColor;
 
 public class Edit_Info extends JFrame
 {
@@ -60,85 +63,97 @@ public class Edit_Info extends JFrame
 	 */
 	public Edit_Info()
 	{
+		setTitle("Edit Information");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Edit_Info.class.getResource("/Icon/paper_plane.png")));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 416, 364);
+		setBounds(100, 100, 416, 373);
 		contentPane = new JPanel();
+		contentPane.setBackground(SystemColor.text);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(SystemColor.text);
 		contentPane.add(panel, BorderLayout.CENTER);
 		FlowLayout fl_panel = new FlowLayout(FlowLayout.LEFT, 5, 5);
 		panel.setLayout(fl_panel);
 		
 		JPanel panel_3 = new JPanel();
+		panel_3.setBackground(SystemColor.text);
 		FlowLayout flowLayout_1 = (FlowLayout) panel_3.getLayout();
 		panel.add(panel_3);
 		
 		JLabel lblNewLabel = new JLabel("First Name     ");
-		lblNewLabel.setFont(new Font("新細明體", Font.PLAIN, 20));
+		lblNewLabel.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 20));
 		panel_3.add(lblNewLabel);
 		
 		textField_name = new JTextField();
 		panel_3.add(textField_name);
-		textField_name.setFont(new Font("新細明體", Font.PLAIN, 25));
+		textField_name.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 25));
 		textField_name.setColumns(10);
 		
 		JPanel panel_4 = new JPanel();
+		panel_4.setBackground(SystemColor.text);
 		panel.add(panel_4);
 		
 		JLabel lblLastName = new JLabel("Last Name      ");
-		lblLastName.setFont(new Font("新細明體", Font.PLAIN, 20));
+		lblLastName.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 20));
 		panel_4.add(lblLastName);
 		
 		textField_lname = new JTextField();
-		textField_lname.setFont(new Font("新細明體", Font.PLAIN, 25));
+		textField_lname.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 25));
 		textField_lname.setColumns(10);
 		panel_4.add(textField_lname);
 		
 		JPanel panel_2 = new JPanel();
+		panel_2.setBackground(SystemColor.text);
 		panel.add(panel_2);
 		
 		JLabel lblNewLabel_1 = new JLabel("Password        ");
-		lblNewLabel_1.setFont(new Font("新細明體", Font.PLAIN, 20));
+		lblNewLabel_1.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 20));
 		panel_2.add(lblNewLabel_1);
 		
 		textField_pw = new JTextField();
-		textField_pw.setFont(new Font("新細明體", Font.PLAIN, 25));
+		textField_pw.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 25));
 		panel_2.add(textField_pw);
 		textField_pw.setColumns(10);
 		
 		JPanel panel_5 = new JPanel();
+		panel_5.setBackground(SystemColor.text);
 		panel.add(panel_5);
 		
 		JLabel lblNewLabel_3 = new JLabel("Department     ");
-		lblNewLabel_3.setFont(new Font("新細明體", Font.PLAIN, 20));
+		lblNewLabel_3.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 20));
 		panel_5.add(lblNewLabel_3);
 		
 		comboBox = new JComboBox();
+		comboBox.setBackground(Color.LIGHT_GRAY);
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"administrator", "dentist", "pediatrics", "surgical"}));
-		comboBox.setFont(new Font("新細明體", Font.PLAIN, 25));
+		comboBox.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 25));
 		panel_5.add(comboBox);
 		
 		JPanel panel_6 = new JPanel();
+		panel_6.setBackground(SystemColor.text);
 		panel.add(panel_6);
 		
 		JLabel lblNewLabel_4 = new JLabel("Phone Number");
-		lblNewLabel_4.setFont(new Font("新細明體", Font.PLAIN, 20));
+		lblNewLabel_4.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 20));
 		panel_6.add(lblNewLabel_4);
 		
 		textField_phone = new JTextField();
-		textField_phone.setFont(new Font("新細明體", Font.PLAIN, 25));
+		textField_phone.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 25));
 		panel_6.add(textField_phone);
 		textField_phone.setColumns(10);
 		
 		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(SystemColor.text);
 		FlowLayout flowLayout = (FlowLayout) panel_1.getLayout();
 		flowLayout.setAlignment(FlowLayout.RIGHT);
 		contentPane.add(panel_1, BorderLayout.SOUTH);
 		
 		JButton btnNewButton = new JButton("SAVE");
+		btnNewButton.setBackground(Color.LIGHT_GRAY);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) 
 			{
@@ -166,7 +181,7 @@ public class Edit_Info extends JFrame
 					}
 				} 
 		});
-		btnNewButton.setFont(new Font("新細明體", Font.PLAIN, 20));
+		btnNewButton.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 21));
 		panel_1.add(btnNewButton);
 	}
 	
